@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sales Predictor Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #34495e;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .animated-heading {
+            font-size: 2.5em;
+            color: #ffcc00;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #ffcc00;
+        }
+
+        select,
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ecf0f1;
+            border-radius: 5px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ffcc00;
+            color: #2c3e50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffa500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="animated-heading">Car Price Predictor Form</h1>
+        </header>
+        
+        <form action="/predict" method="post">
+            <label for="make">Make:</label>
+            <select id="make" name="make" required>
+                <option value="BMW">BMW</option>
+                <option value="Audi">Audi</option>
+                <option value="FIAT">FIAT</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                <option value="Chrysler">Chrysler</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Volvo">Volvo</option>
+                <option value="Mazda">Mazda</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Alfa Romeo">Alfa Romeo</option>
+                <option value="Toyota">Toyota</option>
+                <option value="McLaren">McLaren</option>
+                <option value="Maybach">Maybach</option>
+                <option value="Pontiac">Pontiac</option>
+                <option value="Porsche">Porsche</option>
+                <option value="Saab">Saab</option>
+                <option value="GMC">GMC</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Plymouth">Plymouth</option>
+                <option value="Honda">Honda</option>
+                <option value="Oldsmobile">Oldsmobile</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Ford">Ford</option>
+                <option value="Cadillac">Cadillac</option>
+                <option value="Kia">Kia</option>
+                <option value="Bentley">Bentley</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Dodge">Dodge</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Lincoln">Lincoln</option>
+                <option value="Subaru">Subaru</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Spyker">Spyker</option>
+                <option value="Buick">Buick</option>
+                <option value="Acura">Acura</option>
+                <option value="Rolls-Royce">Rolls-Royce</option>
+                <option value="Maserati">Maserati</option>
+                <option value="Lexus">Lexus</option>
+                <option value="Aston Martin">Aston Martin</option>
+                <option value="Land Rover">Land Rover</option>
+                <option value="Lotus">Lotus</option>
+                <option value="Infiniti">Infiniti</option>
+                <option value="Scion">Scion</option>
+                <option value="Genesis">Genesis</option>
+                <option value="HUMMER">HUMMER</option>
+                <option value="Tesla">Tesla</option>
+                <option value="Bugatti">Bugatti</option>
+            </select>
+
+            <label for="model">Model:</label>
+            <select id="model" name="model" required>
+            </select>
+            <label for="year">year</label>
+            <select name="year" id="year" required>
+            </select>
+
+            <label for="engineCylinders">Engine Cylinders:</label>
+            <select id="engineCylinders" name="engineCylinders" required>
+                <option value="6">6.0</option>
+                <option value="4">4.0</option>
+                <option value="5">5.0</option>
+                <option value="8">8.0</option>
+                <option value="12">12.0</option>
+                <option value="0">0.0</option>
+                <option value="10">10.0</option>
+                <option value="3">3.0</option>
+                <option value="16">16.0</option>
+            </select>
+
+            <button type="/submit" class="animated-button">Predict Now</button>
+        </form>
+    </div>
+    <script>
+    
+        var carModels = ['1 Series M', '1 Series', '100', '124 Spider', '190-Class',
+           '2 Series', '200', '200SX', '240SX', '240', '2',
+           '3 Series Gran Turismo', '3 Series', '300-Class', '3000GT', '300',
+           '300M', '300ZX', '323', '350-Class', '350Z', '360', '370Z', '3',
+           '4 Series Gran Coupe', '4 Series', '400-Class', '420-Class',
+           '456M', '458 Italia', '4C', '4Runner', '5 Series Gran Turismo',
+           '5 Series', '500-Class', '500e', '500', '500L', '500X', '550',
+           '560-Class', '570S', '575M', '57', '599', '5',
+           '6 Series Gran Coupe', '6 Series', '600-Class', '6000',
+           '612 Scaglietti', '626', '62', '650S Coupe', '650S Spider', '6',
+           '7 Series', '718 Cayman', '740', '760', '780', '8 Series', '80',
+           '850', '86', '9-2X', '9-3 Griffin', '9-3', '9-4X', '9-5', '9-7X',
+           '9000', '900', '90', '911', '928', '929', '940', '944', '960',
+           '968', 'A3', 'A4 allroad', 'A4', 'A5', 'A6', 'A7', 'A8',
+           'Acadia Limited', 'Acadia', 'Accent', 'Acclaim',
+           'Accord Crosstour', 'Accord Hybrid', 'Accord Plug-In Hybrid',
+           'Accord', 'Achieva', 'ActiveHybrid 5', 'ActiveHybrid 7',
+           'ActiveHybrid X6', 'Aerio', 'Aerostar', 'Alero', 'Allante',
+           'allroad quattro', 'allroad', 'ALPINA B6 Gran Coupe', 'ALPINA B7',
+           'Alpina', 'Altima Hybrid', 'Altima', 'Amanti', 'AMG GT', 'Armada',
+           'Arnage', 'Aspen', 'Aspire', 'Astro Cargo', 'Astro', 'ATS Coupe',
+           'ATS-V', 'ATS', 'Aurora', 'Avalanche', 'Avalon Hybrid', 'Avalon',
+           'Avenger', 'Aventador', 'Aveo', 'Aviator', 'Axxess', 'Azera',
+           'Aztek', 'Azure T', 'Azure', 'B-Class Electric Drive',
+           'B-Series Pickup', 'B-Series Truck', 'B-Series', 'B9 Tribeca',
+           'Baja', 'Beetle Convertible', 'Beetle', 'Beretta',
+           'Black Diamond Avalanche', 'Blackwood', 'Blazer', 'Bolt EV',
+           'Bonneville', 'Borrego', 'Boxster', 'Bravada', 'Breeze',
+           'Bronco II', 'Bronco', 'Brooklands', 'Brougham', 'BRZ', 'C-Class',
+           'C-Max Hybrid', 'C30', 'C36 AMG', 'C43 AMG', 'C70', 'C8',
+           'Cabriolet', 'Cabrio', 'Cadenza', 'Caliber', 'California T',
+           'California', 'Camaro', 'Camry Hybrid', 'Camry Solara', 'Camry',
+           'Canyon', 'Caprice', 'Captiva Sport', 'Caravan', 'Carrera GT',
+           'Cascada', 'Catera', 'Cavalier', 'Cayenne', 'Cayman S', 'Cayman',
+           'CC', 'Celebrity', 'Celica', 'Century', 'Challenger', 'Charger',
+           'Chevy Van', 'Ciera', 'Cirrus', 'City Express', 'Civic CRX',
+           'Civic del Sol', 'Civic', 'C/K 1500 Series', 'C/K 2500 Series',
+           'CL-Class', 'CLA-Class', 'CL', 'Classic', 'CLK-Class', 'CLS-Class',
+           'Cobalt', 'Colorado', 'Colt', 'Concorde',
+           'Continental Flying Spur Speed', 'Continental Flying Spur',
+           'Continental GT Speed Convertible', 'Continental GT Speed',
+           'Continental GT3-R', 'Continental GT', 'Continental GTC Speed',
+           'Continental GTC', 'Continental Supersports Convertible',
+           'Continental Supersports', 'Continental', 'Contour SVT', 'Contour',
+           'Corniche', 'Corolla iM', 'Corolla', 'Corrado', 'Corsica',
+           'Corvette Stingray', 'Corvette', 'Coupe', 'CR-V', 'CR-Z',
+           'Cressida', 'Crossfire', 'Crosstour', 'Crosstrek',
+           'Crown Victoria', 'Cruze Limited', 'Cruze', 'CT 200h', 'CT6',
+           'CTS Coupe', 'CTS-V Coupe', 'CTS-V Wagon', 'CTS-V', 'CTS Wagon',
+           'CTS', 'Cube', 'Custom Cruiser', 'Cutlass Calais', 'Cutlass Ciera',
+           'Cutlass Supreme', 'Cutlass', 'CX-3', 'CX-5', 'CX-7', 'CX-9',
+           'Dakota', 'Dart', 'Dawn', 'Daytona', 'DB7', 'DB9 GT', 'DB9', 'DBS',
+           'Defender', 'DeVille', 'Diablo', 'Diamante', 'Discovery Series II',
+           'Discovery Sport', 'Discovery', 'DTS', 'Durango', 'Dynasty',
+           'E-150', 'E-250', 'E-Class', 'e-Golf', 'E-Series Van',
+           'E-Series Wagon', 'E55 AMG', 'ECHO', 'Eclipse Spyder', 'Eclipse',
+           'Edge', 'Eighty-Eight Royale', 'Eighty-Eight', 'Elantra Coupe',
+           'Elantra GT', 'Elantra Touring', 'Elantra', 'Eldorado', 'Electra',
+           'Element', 'Elise', 'Enclave', 'Encore', 'Endeavor', 'Entourage',
+           'Envision', 'Envoy XL', 'Envoy XUV', 'Envoy', 'Enzo', 'Eos',
+           'Equator', 'Equinox', 'Equus', 'ES 250', 'ES 300h', 'ES 300',
+           'ES 330', 'ES 350', 'Escalade ESV', 'Escalade EXT',
+           'Escalade Hybrid', 'Escalade', 'Escape Hybrid', 'Escape', 'Escort',
+           'Esprit', 'Estate Wagon', 'Esteem', 'EuroVan', 'Evora 400',
+           'Evora', 'EX35', 'Excel', 'Exige', 'EX', 'Expedition',
+           'Explorer Sport Trac', 'Explorer Sport', 'Explorer', 'Expo',
+           'Express Cargo', 'Express', 'F-150 Heritage',
+           'F-150 SVT Lightning', 'F-150', 'F-250', 'F12 Berlinetta', 'F430',
+           'Festiva', 'FF', 'Fiesta', 'Firebird', 'Fit EV', 'Fit',
+           'Five Hundred', 'FJ Cruiser', 'Fleetwood', 'Flex', 'Flying Spur',
+           'Focus RS', 'Focus ST', 'Focus', 'Forenza', 'Forester', 'Forte',
+           'Fox', 'FR-S', 'Freelander', 'Freestar', 'Freestyle', 'Frontier',
+           'Fusion Hybrid', 'Fusion', 'FX35', 'FX45', 'FX50', 'FX', 'G-Class',
+           'G Convertible', 'G Coupe', 'G Sedan', 'G20', 'G35',
+           'G37 Convertible', 'G37 Coupe', 'G37 Sedan', 'G37', 'G3', 'G5',
+           'G6', 'G80', 'G8', 'Galant', 'Gallardo', 'Genesis Coupe',
+           'Genesis', 'Ghibli', 'Ghost Series II', 'Ghost', 'GL-Class',
+           'GLA-Class', 'GLC-Class', 'GLE-Class Coupe', 'GLE-Class', 'GLI',
+           'GLK-Class', 'GLS-Class', 'Golf Alltrack', 'Golf GTI', 'Golf R',
+           'Golf SportWagen', 'Golf', 'Grand Am', 'Grand Caravan',
+           'Grand Prix', 'Grand Vitara', 'Grand Voyager', 'GranSport',
+           'GranTurismo Convertible', 'GranTurismo', 'GS 200t', 'GS 300',
+           'GS 350', 'GS 400', 'GS 430', 'GS 450h', 'GS 460', 'GS F', 'GT-R',
+           'GT', 'GTI', 'GTO', 'GX 460', 'GX 470', 'H3', 'H3T', 'HHR',
+           'Highlander Hybrid', 'Highlander', 'Horizon', 'HR-V', 'HS 250h',
+           'Huracan', 'i-MiEV', 'I30', 'I35', 'i3', 'iA', 'ILX Hybrid', 'ILX',
+           'Impala Limited', 'Impala', 'Imperial', 'Impreza WRX', 'Impreza',
+           'iM', 'Insight', 'Integra', 'Intrepid', 'Intrigue', 'iQ',
+           'IS 200t', 'IS 250 C', 'IS 250', 'IS 300', 'IS 350 C', 'IS 350',
+           'IS F', 'J30', 'Jetta GLI', 'Jetta Hybrid', 'Jetta SportWagen',
+           'Jetta', 'Jimmy', 'Journey', 'Juke', 'Justy', 'JX', 'K900',
+           'Kizashi', 'LaCrosse', 'Lancer Evolution', 'Lancer Sportback',
+           'Lancer', 'Land Cruiser', 'Landaulet', 'Laser', 'Le Baron',
+           'Le Mans', 'Leaf', 'Legacy', 'Legend', 'LeSabre', 'Levante', 'LFA',
+           'LHS', 'Loyale', 'LR2', 'LR3', 'LR4', 'LS 400', 'LS 430', 'LS 460',
+           'LS 600h L', 'LS', 'LSS', 'LTD Crown Victoria', 'Lucerne',
+           'Lumina Minivan', 'Lumina', 'LX 450', 'LX 470', 'LX 570',
+           'M-Class', 'M2', 'M30', 'M35', 'M37', 'M3', 'M4 GTS', 'M45', 'M4',
+           'M56', 'M5', 'M6 Gran Coupe', 'M6', 'Macan', 'Magnum',
+           'Malibu Classic', 'Malibu Hybrid', 'Malibu Limited', 'Malibu Maxx',
+           'Malibu', 'Mark LT', 'Mark VIII', 'Mark VII', 'Matrix', 'Maxima',
+           'Maybach', 'Mazdaspeed 3', 'Mazdaspeed 6', 'Mazdaspeed MX-5 Miata',
+           'Mazdaspeed Protege', 'M', 'MDX', 'Metris', 'Metro',
+           'Mighty Max Pickup', 'Millenia', 'Mirage G4', 'Mirage', 'MKC',
+           'MKS', 'MKT', 'MKX', 'MKZ Hybrid', 'MKZ', 'ML55 AMG', 'Model S',
+           'Monaco', 'Montana SV6', 'Montana', 'Monte Carlo', 'Montero Sport',
+           'Montero', 'MP4-12C', 'MPV', 'MR2 Spyder', 'MR2', 'Mulsanne',
+           'Murano CrossCabriolet', 'Murano', 'Murcielago',
+           'Mustang SVT Cobra', 'Mustang', 'MX-3', 'MX-5 Miata', 'MX-6',
+           'Navajo', 'Navigator', 'Neon', 'New Beetle', 'New Yorker',
+           'Ninety-Eight', 'Nitro', 'NSX', 'NV200', 'NX 200t', 'NX 300h',
+           'NX', 'Odyssey', 'Omni', 'Optima Hybrid', 'Optima', 'Outback',
+           'Outlander Sport', 'Outlander', 'Pacifica', 'Panamera',
+           'Park Avenue', 'Park Ward', 'Paseo', 'Passat', 'Passport',
+           'Pathfinder', 'Phaeton', 'Phantom Coupe', 'Phantom Drophead Coupe',
+           'Phantom', 'Pickup', 'Pilot', 'Precis', 'Prelude', 'Previa',
+           'Prius c', 'Prius Prime', 'Prius v', 'Prius', 'Prizm', 'Probe',
+           'Protege5', 'Protege', 'Prowler', 'PT Cruiser', 'Pulsar', 'Q3',
+           'Q40', 'Q45', 'Q50', 'Q5', 'Q60 Convertible', 'Q60 Coupe', 'Q70',
+           'Q7', 'Quattroporte', 'Quest', 'QX4', 'QX50', 'QX56', 'QX60',
+           'QX70', 'QX80', 'QX', 'R-Class', 'R32', 'R8', 'Rabbit', 'Raider',
+           'Rainier', 'Rally Wagon', 'RAM 150', 'RAM 250', 'Ram 50 Pickup',
+           'Ram Cargo', 'Ram Pickup 1500', 'Ram Van', 'Ram Wagon',
+           'Ramcharger', 'Range Rover Evoque', 'Range Rover Sport',
+           'Range Rover', 'Ranger', 'Rapide S', 'Rapide', 'RAV4 EV',
+           'RAV4 Hybrid', 'RAV4', 'RC 200t', 'RC 300', 'RC 350', 'RC F',
+           'RDX', 'Reatta', 'Regal', 'Regency', 'Rendezvous', 'Reno',
+           'Reventon', 'Ridgeline', 'Rio', 'Riviera', 'RL', 'RLX',
+           'Roadmaster', 'Rogue Select', 'Rogue', 'Rondo', 'Routan', 'RS 4',
+           'RS 5', 'RS 6', 'RS 7', 'RSX', 'RX 300', 'RX 330', 'RX 350',
+           'RX 400h', 'RX 450h', 'RX-7', 'RX-8', 'S-10 Blazer', 'S-10',
+           'S-15 Jimmy', 'S-15', 'S-Class', 'S2000', 'S3', 'S40', 'S4', 'S5',
+           'S60 Cross Country', 'S60', 'S6', 'S70', 'S7', 'S80', 'S8', 'S90',
+           'Safari Cargo', 'Safari', 'Samurai', 'Santa Fe Sport', 'Santa Fe',
+           'Savana Cargo', 'Savana', 'SC 300', 'SC 400', 'SC 430', 'Scoupe',
+           'Sebring', 'Sedona', 'Sentra', 'Sephia', 'Sequoia', 'Seville',
+           'Shadow', 'Shelby GT350', 'Shelby GT500', 'Sidekick', 'Sienna',
+           'Sierra 1500 Classic', 'Sierra 1500 Hybrid', 'Sierra 1500',
+           'Sierra 1500HD', 'Sierra C3', 'Sierra Classic 1500', 'Sigma',
+           'Silhouette', 'Silver Seraph', 'Silverado 1500 Classic',
+           'Silverado 1500 Hybrid', 'Silverado 1500', 'Sixty Special',
+           'Skylark', 'SL-Class', 'SLC-Class', 'SLK-Class', 'SLR McLaren',
+           'SLS AMG GT Final Edition', 'SLS AMG GT', 'SLS AMG', 'SLX',
+           'Solstice', 'Sonata Hybrid', 'Sonata', 'Sonic', 'Sonoma',
+           'Sorento', 'Soul EV', 'Soul', 'Spark EV', 'Spark', 'Spectra',
+           'Spirit', 'Sportage', 'Sportvan', 'Spyder', 'SQ5', 'SRT Viper',
+           'SRX', 'SS', 'SSR', 'Stanza', 'Stealth', 'Stratus', 'STS-V', 'STS',
+           'Suburban', 'Sunbird', 'Sundance', 'Sunfire', 'Superamerica',
+           'Supersports Convertible ISR', 'Supra', 'SVX', 'Swift', 'SX4',
+           'Syclone', 'T100', 'Tacoma', 'Tahoe Hybrid', 'Tahoe Limited/Z71',
+           'Tahoe', 'Taurus X', 'Taurus', 'TC', 'tC', 'Tempo', 'Tercel',
+           'Terrain', 'Terraza', 'Thunderbird', 'Tiburon', 'Tiguan', 'Titan',
+           'TL', 'TLX', 'Toronado', 'Torrent', 'Touareg 2', 'Touareg',
+           'Town and Country', 'Town Car', 'Tracker', 'TrailBlazer EXT',
+           'TrailBlazer', 'Trans Sport', 'Transit Connect', 'Transit Wagon',
+           'Traverse', 'Trax', 'Tribeca', 'Tribute Hybrid', 'Tribute',
+           'Truck', 'TSX Sport Wagon', 'TSX', 'TT RS', 'TT', 'TTS', 'Tucson',
+           'Tundra', 'Typhoon', 'Uplander', 'V12 Vanquish', 'V12 Vantage S',
+           'V12 Vantage', 'V40', 'V50', 'V60 Cross Country', 'V60', 'V70',
+           'V8 Vantage', 'V8', 'V90', 'Vanagon', 'Vandura', 'Van', 'Vanquish',
+           'Vanwagon', 'Veloster', 'Venture', 'Venza', 'Veracruz', 'Verano',
+           'Verona', 'Versa Note', 'Versa', 'Veyron 16.4', 'Vibe', 'Vigor',
+           'Viper', 'Virage', 'Vitara', 'Voyager', 'Windstar Cargo',
+           'Windstar', 'Wraith', 'WRX', 'X-90', 'X1', 'X3', 'X4', 'X5 M',
+           'X5', 'X6 M', 'X6', 'xA', 'xB', 'XC60', 'XC70', 'XC90', 'XC', 'xD',
+           'XG300', 'XG350', 'XL-7', 'XL7', 'XLR-V', 'XLR', 'XT5', 'Xterra',
+           'XTS', 'XT', 'XV Crosstrek', 'Yaris iA', 'Yaris', 'Yukon Denali',
+           'Yukon Hybrid', 'Yukon XL', 'Yukon', 'Z3', 'Z4 M', 'Z4', 'Z8',
+           'ZDX', 'Zephyr'
+        ];
+        
+        
+        var select = document.getElementById("model");
+        
+        
+        for (var i = 0; i < carModels.length; i++) {
+            var option = document.createElement("option");
+            option.value = carModels[i];
+            option.text = carModels[i];
+            select.add(option);
+        }
+        </script>
+    
+    <script>
+    var select = document.getElementById("year");
+
+    var yearsToAdd = [2011, 2012, 2013, 1992, 1993, 1994, 2017, 1991, 2016, 1990, 2015, 1996, 1997, 1998, 2014, 1999, 2002, 2003, 2004, 1995, 2007, 2008, 2009, 2001, 2010, 2000, 2005, 2006];
+    
+    for (var i = 0; i < yearsToAdd.length; i++) {
+        var option = document.createElement("option");
+        option.value = yearsToAdd[i];
+        option.text = yearsToAdd[i];
+        select.add(option);
+    }
+    </script>
+    
+    </body>
+    </html>
+    
